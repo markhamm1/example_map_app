@@ -1,18 +1,29 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>{{ message }}</h1>
+    <div id="map" width="300px"></div>;
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+<style>
+</style>
 
+<script>
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+  data: function () {
+    return {
+      message: "This is a Map",
+    };
+  },
+  mounted: function () {
+    mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_KEY;
+    var map = new mapboxgl.Map({
+      container: "map", // container id
+      style: "mapbox://styles/mapbox/streets-v11", // style URL
+      center: [-74.5, 40], // starting position [lng, lat]
+      zoom: 9, // starting zoom
+    });
+  },
+  methods: {},
+};
 </script>
